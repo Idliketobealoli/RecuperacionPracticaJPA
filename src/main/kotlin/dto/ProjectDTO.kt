@@ -39,17 +39,17 @@ class ProjectDTO() {
     var programmers: List<Programmer>? = null
 
     constructor(
-            id: String,
-            department: Department,
-            projectManager: Programmer,
-            name: String,
-            budget: Double = 0.0,
-            startDate: String,
-            endDate: String? = null,
-            technologies: List<Technology>? = null,
-            repository: Repository,
-            isFinished: Boolean = false,
-            programmers: List<Programmer>? = null
+        id: String,
+        department: Department,
+        projectManager: Programmer,
+        name: String,
+        budget: Double = 0.0,
+        startDate: String,
+        endDate: String? = null,
+        technologies: List<Technology>? = null,
+        repository: Repository,
+        isFinished: Boolean = false,
+        programmers: List<Programmer>? = null
     ) : this() {
         this.id = id
         this.department = department

@@ -11,28 +11,6 @@ import java.util.*
  */
 class Utils {
     /**
-     * Pasa de int a booleano.
-     * Si el integer es par, lo asigna a false, si es impar, lo asigna a verdadero.
-     */
-    fun intToBoolean(x: Int): Boolean {
-        return when (x % 2) {
-            0 -> false
-            1 -> true
-            else -> false
-        }
-    }
-
-    /**
-     * Pasa de boolean a int. false == 0 y true == 1
-     */
-    fun booleanToInt(x: Boolean): Int {
-        return when (x) {
-            false -> 0
-            true -> 1
-        }
-    }
-
-    /**
      * Se asegura de que la string introducida corresponde a una fecha entre el 01/01/1900 y el 31/12/9999 dd/MM/yyyy,
      * separados por barras y obligatoriamente dia es un rango de 1 a 31, mes es de 1 a 12 y año de 1900 a 9999.
      * Si no cumple este criterio, suelta excepcion.
@@ -61,9 +39,9 @@ class Utils {
      * Si son correctos no hace nada.
      */
     fun makeSureBooleansAreCorrect(item: Programmer) {
-        val depBoss = intToBoolean(item.isDepBoss)
-        val pManager = intToBoolean(item.isProjectManager)
-        val active = intToBoolean(item.isActive)
+        val depBoss = item.isDepBoss
+        val pManager = item.isProjectManager
+        val active = item.isActive
         when {
             depBoss && pManager -> throw Exception(
                     "A programmer can't be Department Boss and Project Manager at the same time."
@@ -309,7 +287,7 @@ class Utils {
      */
     fun makeSureThisGuyIsDepBoss(boss: Programmer) {
         when {
-            !intToBoolean(boss.isDepBoss) ->
+            !boss.isDepBoss ->
                 throw Exception("Error: programmer with id ${boss.id} is not a Department boss.")
         }
         makeSureBooleansAreCorrect(boss)
@@ -320,18 +298,33 @@ class Utils {
      */
     fun makeSureThisProgrammerIsInThisIssue(idProgrammer: String, idIssue: String) {
         val issue = IssueRepository().getById(idIssue)
-        val list = issue.programmers_ids?.split(",")
-        if (list?.contains(idProgrammer) != true) throw Exception("Error: programmer with id $idProgrammer is not in Issue[$idIssue].programmers")
+        var containsProgrammer = false
+        issue.programmers?.forEach { x ->
+            run {
+                if (x.id.contentEquals(idProgrammer)) {
+                    containsProgrammer = true
+                }
+            }
+        }
+        if (!containsProgrammer) throw Exception("Error: programmer with id $idProgrammer is not in Issue[$idIssue].programmers")
     }
 
     /**
      * Se asegura de que el programmer introducido es jefe de proyecto. En caso negativo, excepcion.
      */
     fun makeSureThisGuyIsProjectManager(author: Programmer, id: String) {
+        var containsID = false
+        author.activeProjects?.forEach { x ->
+            run {
+                if (x.id.contentEquals(id)) {
+                    containsID = true
+                }
+            }
+        }
         when {
-            !intToBoolean(author.isProjectManager) ->
+            !author.isProjectManager ->
                 throw Exception("Error: programmer with id ${author.id} is not a Project Manager.")
-            author.activeProjects_ids?.contains(id) != true ->
+            !containsID ->
                 throw Exception("Error: programmer with id ${author.id} is not in this project.")
         }
         makeSureBooleansAreCorrect(author)

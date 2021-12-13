@@ -5,6 +5,7 @@ import com.google.gson.ExclusionStrategy
 import com.google.gson.FieldAttributes
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.google.gson.annotations.Expose
 import model.Commit
 import model.Department
 import model.Issue
@@ -18,35 +19,50 @@ import javax.xml.bind.annotation.*
 @XmlRootElement(name = "programmer")
 @XmlAccessorType(XmlAccessType.FIELD)
 class ProgrammerDTO() {
+    @Expose
     @XmlAttribute
     lateinit var id: String
+    @Expose
     lateinit var name: String
 
+    @Expose
     @XmlAttribute(name = "register_date")
     lateinit var registerDate: String
+    @Expose
     lateinit var department: Department
 
     @XmlElementWrapper(name = "active_projects")
+    @Expose
     var activeProjects: List<Project>? = null
 
     @XmlElementWrapper
+    @Expose
     var commits: List<Commit>? = null
 
     @XmlElementWrapper
+    @Expose
     var issues: List<Issue>? = null
 
     @XmlElementWrapper
+    @Expose
     var technologies: List<Technology>? = null
+    @Expose
     var salary: Double = 0.0
 
     @XmlAttribute(name = "department_boss")
+    @Expose
     var isDepBoss: Boolean = false
 
     @XmlAttribute(name = "project_manager")
+    @Expose
     var isProjectManager: Boolean = false
 
     @XmlAttribute(name = "active")
+    @Expose
     var isActive: Boolean = false
+
+    @XmlTransient
+    lateinit var password: String
 
     constructor(
             id: String,
@@ -60,7 +76,8 @@ class ProgrammerDTO() {
             salary: Double = 0.0,
             isDepBoss: Boolean = false,
             isProjectManager: Boolean = false,
-            isActive: Boolean = false
+            isActive: Boolean = false,
+            password:String
     ) : this() {
         this.id = id
         this.name = name
@@ -74,6 +91,7 @@ class ProgrammerDTO() {
         this.isDepBoss = isDepBoss
         this.isProjectManager = isProjectManager
         this.isActive = isActive
+        this.password = password
     }
 
     /**
@@ -92,7 +110,7 @@ class ProgrammerDTO() {
      * @return String
      */
     fun toJSON(): String {
-        val gson = GsonBuilder().setPrettyPrinting().create()
+        val gson = GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create()
         return gson.toJson(this)
     }
 }

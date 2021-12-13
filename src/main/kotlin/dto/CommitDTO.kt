@@ -33,14 +33,14 @@ class CommitDTO() {
     lateinit var issue: Issue
 
     constructor(
-            id: String,
-            title: String,
-            text: String? = null,
-            date: String,
-            repository: Repository,
-            project: Project,
-            author: Programmer,
-            issue: Issue
+        id: String,
+        title: String,
+        text: String? = null,
+        date: String,
+        repository: Repository,
+        project: Project,
+        author: Programmer,
+        issue: Issue
     ) : this() {
         this.id = id
         this.title = title

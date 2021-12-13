@@ -34,15 +34,15 @@ class IssueDTO() {
     var isFinished: Boolean = false
 
     constructor(
-            id: String,
-            author: Programmer,
-            title: String,
-            text: String?,
-            date: String,
-            programmers: List<Programmer>?,
-            project: Project,
-            repository: Repository,
-            isFinished: Boolean = false
+        id: String,
+        author: Programmer,
+        title: String,
+        text: String?,
+        date: String,
+        programmers: List<Programmer>?,
+        project: Project,
+        repository: Repository,
+        isFinished: Boolean = false
     ) : this() {
         this.id = id
         this.author = author

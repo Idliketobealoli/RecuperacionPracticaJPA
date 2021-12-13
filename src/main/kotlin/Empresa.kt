@@ -1,5 +1,4 @@
 import controllers.*
-import db.DBController
 import dto.*
 import model.*
 import java.io.File
@@ -11,6 +10,7 @@ import kotlin.system.exitProcess
  * @author Daniel Rodriguez
  */
 object Empresa {
+    /*
     val prog = Programmer(
             "prog0001-0000-0000-0000-000000000000", "prog", "26/05/2002",
             "depart01-0000-0000-0000-000000000000",
@@ -91,39 +91,14 @@ object Empresa {
             null, null, 0.0, "",
     )
 
-    /**
-     * Se asegura de que la conexion con la base de datos es correcta.
-     * @author Daniel Rodriguez
      */
-    fun checkService() {
-        try {
-            DBController.open()
-            println(DBController.select("SELECT 'Hello World'")?.next())
-            DBController.close()
-        }
-        // esto no deberia saltar nunca, al ser un fichero sqlite.
-        catch (e: Exception) {
-            println("Could not connect with Database: ${e.printStackTrace()}")
-            exitProcess(1)
-        }
-    }
-
-    /**
-     * inicializa las propiedades iniciales del controlador de la base de datos.
-     * @author Daniel Rodriguez
-     */
-    init {
-        val path = "${System.getProperty("user.dir")}${File.separator}sql${File.separator}database.sql"
-        DBController.open()
-        DBController.initData(path)
-        DBController.close()
-    }
 
     /**
      * Hace un insert - find all - get by id - update - delete a Department
      * @author Daniel Rodriguez
      */
     fun departments(x: String) {
+        /*
         val depart = DepartmentDTO(
                 "depart01-0000-0000-0000-000000000000", "dep1", boss, 11111.0,
                 listOf(proj1, proj2), null, 0.0, listOf(),
@@ -144,6 +119,8 @@ object Empresa {
         println("\n\nDELETE Department with ID = ${depart.id}:")
         println(DepartmentController.deleteDepartment(depart2, x))
         println("\n\n\n")
+
+         */
     }
 
     /**
@@ -151,6 +128,7 @@ object Empresa {
      * @author Daniel Rodriguez
      */
     fun projects(x: String) {
+        /*
         val projDto1 = ProjectDTO("projDTO1-0000-0000-0000-000000000000", depart3, manager,
                 "project uwu", 64563.3, "01/01/2001", null,
                 listOf(Technology.TYPESCRIPT, Technology.PYTHON), repo1,
@@ -173,6 +151,8 @@ object Empresa {
         println("\n\nDELETE Project with ID = ${projDto2.id}:")
         println(ProjectController.deleteProject(projDto2, x))
         println("\n\n\n")
+
+         */
     }
 
     /**
@@ -180,6 +160,7 @@ object Empresa {
      * @author Daniel Rodriguez
      */
     fun commits(x: String) {
+        /*
         val commDTO1 = CommitDTO(
                 "comm0003-0000-0000-0000-000000000000", "commit dto 1", null, "11/11/2001",
                 repo1, proj1, prog, issu1
@@ -200,6 +181,8 @@ object Empresa {
         println("\n\nDELETE Commit with ID = ${commDTO2.id}:")
         println(CommitController.deleteCommit(commDTO2, x))
         println("\n\n\n")
+
+         */
     }
 
     /**
@@ -207,6 +190,7 @@ object Empresa {
      * @author Daniel Rodriguez
      */
     fun issues(x: String) {
+        /*
         val issuDTO1 = IssueDTO(
                 "issu0004-0000-0000-0000-000000000000", manager, "Issue DTO 1",
                 "https://www.youtube.com/watch?v=hjGZLnja1o8&ab_channel=TheNightcoreWitcher",
@@ -229,6 +213,7 @@ object Empresa {
         println("\n\nDELETE Issue with ID = ${issuDTO2.id}:")
         println(IssueController.deleteIssue(issuDTO2, x))
         println("\n\n\n")
+        */
     }
 
     /**
