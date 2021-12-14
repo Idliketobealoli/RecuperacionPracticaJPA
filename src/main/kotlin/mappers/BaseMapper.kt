@@ -1,8 +1,8 @@
 package mappers
 
 /**
- * @author Daniel Rodriguez Muñoz
  * Clase abstracta que hace de esqueleto para los mapeadores.
+ * @author Daniel Rodriguez Muñoz
  */
 abstract class BaseMapper<T, DTO> {
     fun fromDTO(items: List<DTO>): List<T> {

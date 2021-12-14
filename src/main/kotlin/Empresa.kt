@@ -99,15 +99,6 @@ object Empresa {
      */
     fun departments(x: String) {
         /*
-        val depart = DepartmentDTO(
-                "depart01-0000-0000-0000-000000000000", "dep1", boss, 11111.0,
-                listOf(proj1, proj2), null, 0.0, listOf(),
-        )
-        val depart2 = DepartmentDTO(
-                "depart01-0000-0000-0000-000000000000", "dep2", boss2, -11111.0,
-                listOf(proj1, proj2), null, 0.0, listOf(),
-        )
-
         println("INSERT Department:")
         println(DepartmentController.insertDepartment(depart, x))
         println("\n\nFIND ALL Departments:")
